@@ -1,0 +1,49 @@
+body {
+    background-color: #000000;;
+    color:  #000000;;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    margin: 0 auto;
+}
+
+.icon{
+    width: 25px;
+    
+}
+
+.categories{
+    height: 445px;
+}
+
+.size{
+    width: 5%;
+}
+
+.fem{
+    width: 400px;
+    height: auto;
+}
+
+#start {
+    position: relative;
+    min-height: 200px;
+    background: url('../images/A.webp');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: #fff;
+}
+
+#start h2 {
+    font-size: 40px;
+    color: #f1f1f1;
+}
+
+.vision{
+    width: 800px;
+}
+
+.right{
+    float: right;
+}

@@ -14,9 +14,12 @@
 
 <body>
 
-    <div class="container-fluid">
+    <div class="container-fluid ">
+        
         <div class="row">
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block  sidebar collapse"
+                style="background-color:rgba(216, 188, 188, 1) ;">
+
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -69,59 +72,55 @@
                     </ul>
                 </div>
             </nav>
-            <div class="row bg-dark ">
-                <h1 class="h2">Home</h1>
-                <p>This is the homepage of a simple admin interface which is part of a tutorial written on Themesberg
-                </p>
-            </div>
-
-            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4 z-index">
 
 
-                <div class="row my-4">
-                    <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                        <div class="card">
-                            <h5 class="card-header">Customers</h5>
-                            <div class="card-body">
-                                <h5 class="card-title">345k</h5>
-                                <p class="card-text">Feb 1 - Apr 1, United States</p>
-                                <p class="card-text text-success">18.2% increase since last month</p>
+            <main class="col-md-9 ml-sm-auto col-lg-10 h-25   ">
+                <div class="row  text-white z-index-2  h-25"
+                    style="position: absolute; background-color:rgb(0, 0, 0) ;">
+                    <h1 class="mt-2">Home</h1>
+
+                </div><br><br><br><br>
+                <div class="card shadow-lg" style="background-color:rgb(235, 235, 235) ;">
+                    <div class="row my-4 z-index-1 m-0 mt-5">
+                        <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0 ">
+                            <div class="card">
+                                <h5 class="card-header">Customers</h5>
+                                <div class="card-body">
+                                    <h5 class="card-title">345k</h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">Revenue</h5>
-                            <div class="card-body">
-                                <h5 class="card-title">$2.4k</h5>
-                                <p class="card-text">Feb 1 - Apr 1, United States</p>
-                                <p class="card-text text-success">4.6% increase since last month</p>
+                        <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+                            <div class="card">
+                                <h5 class="card-header">Revenue</h5>
+                                <div class="card-body">
+                                    <h5 class="card-title">$2.4k</h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">Purchases</h5>
-                            <div class="card-body">
-                                <h5 class="card-title">43</h5>
-                                <p class="card-text">Feb 1 - Apr 1, United States</p>
-                                <p class="card-text text-danger">2.6% decrease since last month</p>
+                        <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+                            <div class="card">
+                                <h5 class="card-header">Purchases</h5>
+                                <div class="card-body">
+                                    <h5 class="card-title">43</h5>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">Traffic</h5>
-                            <div class="card-body">
-                                <h5 class="card-title">64k</h5>
-                                <p class="card-text">Feb 1 - Apr 1, United States</p>
-                                <p class="card-text text-success">2.5% increase since last month</p>
+                        <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+                            <div class="card">
+                                <h5 class="card-header">Traffic</h5>
+                                <div class="card-body">
+                                    <h5 class="card-title">64k</h5>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <h1 class="h2">Sales Update</h1>
+                <br>
+                <br>
+                <h1 class="h2 mt">Sales Update</h1>
+                <br>
                 <div class="col-12 col-xl-8 mx-auto d-block">
                     <div class="card bg-dark text-white ">
                         <div class="card-body">

@@ -1,8 +1,8 @@
 <?php
 session_start();
-include '../ConnexionBD/dbconnexion.php';
+include '../bdConnection/dbconnexion.php';
  
-if(isset($_POST['connexion'])) {
+if(isset($_POST['Submit'])) {
    $nom = htmlspecialchars($_POST['nom']);
    $password = htmlspecialchars($_POST['password']);
    if(!empty($nom) AND !empty($password)) {
@@ -19,12 +19,13 @@ if(isset($_POST['connexion'])) {
          $erreur = "Mauvais nom ou mot de passe !";
       }
    } else {
-      $erreur = "Tous les champs doivent être complétés !";
+    if($nom == "ADMIN" AND $password== ""){
+        header('Location: ../Admin/acceuilAdmin.php');
+       }else{
+      $erreur = "Tous les champs doivent être complétés !";}
    }
 
-   if($nom == "ADMIN" AND $password== ""){
-    header('Location: ../Admin/acceuilAdmin.php');
-   }
+   
 }
 
 ?>

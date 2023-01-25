@@ -1,3 +1,7 @@
+<?php
+$connect = mysqli_connect('localhost', 'root', '', 'conciergerie');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,26 +9,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/37cf037958.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <title>Document</title>
 </head>
 
 <body>
   <nav class="navbar  navbar-expand-sm navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="#">HOME</a>
-      <a class="navbar-brand" href="#">ABOUT US</a>
-      <a class="navbar-brand" href="#">SHOP</a>
-      <a class="navbar-brand" href="#">BLOG</a>
-      <a class="navbar-brand" href="#">CONTACT</a>
+      <a class="navbar-brand" href="./homePage.php">HOME</a>
+      <a class="navbar-brand" href="./aboutPage.html">ABOUT US</a>
+      <a class="navbar-brand" href="./shopPage.php">SHOP</a>
+      <a class="navbar-brand" href="./blogPage.html">BLOG</a>
+      <a class="navbar-brand" href="./contactPage.html">CONTACT</a>
 
       <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggler"
         aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -183,208 +183,40 @@
         <div class="col-lg-4">
           <img src="../images/femme.jpg" class="fem" alt="">
         </div>
-        <div class="row col-lg-8">
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card mb-4  text-center">
-              <img class="card-img-top" src="../images/nivea.jpg" alt="Card image">
-              <div class="card-body text-center">
-                <h4>Cloner Twitch avec React</h4>
-                <a class="text-dark " target="_blank" href="https://github.com/">
-                  45$
+        <div class="col-lg-2">
+
+        </div>
+          
+        <div class="col-lg-6 ">
+          
+        <?php 
+        $query = "SELECT * FROM produit WHERE prixUnitaire >= 100 LIMIT 8";
+        $result = mysqli_query($connect, $query);
+        if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_array($result)){
+        echo "<div class='col-lg-4 col-md-6 col-12'>
+        <div class='card mb-4  text-center'>
+          <img class='card-img-top' src='../images/nivea.jpg' alt='Card image'>
+          <div class='card-body text-center'>
+            <h4>".$row["nomProduit"]."</h4>
+            <a class='text-dark ' target='_blank' href='https://github.com/'>".$row["prixUnitaire"]."$</a>
+
+            <div class='  align-items-center'>
+              <div class=' text-center'>
+
+                <a class='text-dark card-link  ml-2' href='#'>
+                  ADD TO CART
                 </a>
-
-                <div class="  align-items-center">
-                  <div class=" text-center">
-
-                    <a class="text-dark card-link  ml-2" href="#">
-                      ADD TO CART
-                    </a>
-                  </div>
-
-                </div>
               </div>
+
             </div>
           </div>
-
-
-
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card mb-4  text-center">
-              <img class="card-img-top" src="../images/nivea.jpg" alt="Card image">
-              <div class="card-body text-center">
-                <h4>Cloner Twitch avec React</h4>
-                <a class="text-dark " target="_blank" href="https://github.com/">
-                  45$
-                </a>
-
-                <div class="  align-items-center">
-                  <div class=" text-center">
-
-                    <a class="text-dark card-link  ml-2" href="#">
-                      ADD TO CART
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card mb-4  text-center">
-              <img class="card-img-top" src="../images/nivea.jpg" alt="Card image">
-              <div class="card-body text-center">
-                <h4>Cloner Twitch avec React</h4>
-                <a class="text-dark " target="_blank" href="https://github.com/">
-                  45$
-                </a>
-
-                <div class="  align-items-center">
-                  <div class=" text-center">
-
-                    <a class="text-dark card-link  ml-2" href="#">
-                      ADD TO CART
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card mb-4  text-center">
-              <img class="card-img-top" src="../images/nivea.jpg" alt="Card image">
-              <div class="card-body text-center">
-                <h4>Cloner Twitch avec React</h4>
-                <a class="text-dark " target="_blank" href="https://github.com/">
-                  45$
-                </a>
-
-                <div class="  align-items-center">
-                  <div class=" text-center">
-
-                    <a class="text-dark card-link  ml-2" href="#">
-                      ADD TO CART
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card mb-4  text-center">
-              <img class="card-img-top" src="../images/nivea.jpg" alt="Card image">
-              <div class="card-body text-center">
-                <h4>Cloner Twitch avec React</h4>
-                <a class="text-dark " target="_blank" href="https://github.com/">
-                  45$
-                </a>
-
-                <div class="  align-items-center">
-                  <div class=" text-center">
-
-                    <a class="text-dark card-link  ml-2" href="#">
-                      ADD TO CART
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card mb-4  text-center">
-              <img class="card-img-top" src="../images/nivea.jpg" alt="Card image">
-              <div class="card-body text-center">
-                <h4>Cloner Twitch avec React</h4>
-                <a class="text-dark " target="_blank" href="https://github.com/">
-                  45$
-                </a>
-
-                <div class="  align-items-center">
-                  <div class=" text-center">
-
-                    <a class="text-dark card-link  ml-2" href="#">
-                      ADD TO CART
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card mb-4  text-center">
-              <img class="card-img-top" src="../images/nivea.jpg" alt="Card image">
-              <div class="card-body text-center">
-                <h4>Cloner Twitch avec React</h4>
-                <a class="text-dark " target="_blank" href="https://github.com/">
-                  45$
-                </a>
-
-                <div class="  align-items-center">
-                  <div class=" text-center">
-
-                    <a class="text-dark card-link  ml-2" href="#">
-                      ADD TO CART
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card mb-4  text-center">
-              <img class="card-img-top" src="../images/nivea.jpg" alt="Card image">
-              <div class="card-body text-center">
-                <h4>Cloner Twitch avec React</h4>
-                <a class="text-dark " target="_blank" href="https://github.com/">
-                  45$
-                </a>
-
-                <div class="  align-items-center">
-                  <div class=" text-center">
-
-                    <a class="text-dark card-link  ml-2" href="#">
-                      ADD TO CART
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-lg-3 col-md-6 col-12">
-            <div class="card mb-4  text-center">
-              <img class="card-img-top" src="../images/nivea.jpg" alt="Card image">
-              <div class="card-body text-center">
-                <h4>Cloner Twitch avec React</h4>
-                <a class="text-dark " target="_blank" href="https://github.com/">
-                  45$
-                </a>
-
-                <div class="  align-items-center">
-                  <div class=" text-center">
-
-                    <a class="text-dark card-link  ml-2" href="#">
-                      ADD TO CART
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+      </div>";
+            }
+          }
+          ?>
+          
         </div>
       </div>
     </div>

@@ -1,3 +1,7 @@
+<?php
+$connect = mysqli_connect('localhost', 'root', '', 'conciergerie');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,11 +24,11 @@
 <body>
     <nav class="navbar  navbar-expand-sm navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">HOME</a>
-            <a class="navbar-brand" href="#">ABOUT US</a>
-            <a class="navbar-brand" href="#">SHOP</a>
-            <a class="navbar-brand" href="#">BLOG</a>
-            <a class="navbar-brand" href="#">CONTACT</a>
+        <a class="navbar-brand" href="./homePage.php">HOME</a>
+      <a class="navbar-brand" href="./aboutPage.html">ABOUT US</a>
+      <a class="navbar-brand" href="./shopPage.php">SHOP</a>
+      <a class="navbar-brand" href="./blogPage.html">BLOG</a>
+      <a class="navbar-brand" href="./contactPage.html">CONTACT</a>
 
             <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggler"
                 aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -118,16 +122,51 @@
 
     <div>
         <div class="mask  p-lg-5" style="background-color: rgb(256,212,212)">
+
+            
+
             <div class="container p-5 d-flex align-items-center text-center h-100">
                 <div>
                     <h1 class="mb-5 fw-bold ">SHOP</h1>
                 </div>
             </div>
+
+            
+
         </div>
     </div>
     <br>
     <br>
     
+    <div class="row">
+                <?php 
+                $query = "SELECT * FROM produit";
+                $result = mysqli_query($connect, $query);
+                if(mysqli_num_rows($result) > 0){
+                    while($row = mysqli_fetch_array($result)){
+                        echo "<div class='col-lg-3 col-md-6 col-12'>
+                        <div class='card mb-4  text-center'>
+                          <img class='card-img-top' src='../images/nivea.jpg' alt='Card image'>
+                          <div class='card-body text-center'>
+                            <h4>".$row["nomProduit"]."</h4>
+                            <a class='text-dark ' target='_blank' href='https://github.com/'>".$row["prixUnitaire"]."$</a>
+            
+                            <div class='  align-items-center'>
+                              <div class=' text-center'>
+            
+                                <a class='text-dark card-link  ml-2' href='#'>
+                                  ADD TO CART
+                                </a>
+                              </div>
+            
+                            </div>
+                          </div>
+                        </div>
+                      </div>";
+                    }
+                }
+                ?>
+            </div>
 
     <br>
     <br>

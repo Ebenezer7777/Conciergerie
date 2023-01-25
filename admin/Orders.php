@@ -61,6 +61,11 @@ function totalNumberOrderInProgress()
 
                 <div class="position-sticky">
                     <ul class="nav flex-column">
+                    <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="acceuilAdmin.php">
+                                <img src="../images/logo.png" alt="" srcset="">
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./acceuilAdmin.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
@@ -175,7 +180,7 @@ function totalNumberOrderInProgress()
                 </div>
                 <br>
                 <br>
-                <h1 class="h2 mt">Orders List</h1>
+                <h1 class="h2 mt">Orders</h1>
                 <br>
                 <div class="col-12 col-xl-12 mx-auto d-block">
                     <table class="table table-responsive-sm ">
@@ -190,7 +195,7 @@ function totalNumberOrderInProgress()
                                 <th scope="col">Adresse Livraison</th>
 
                                 <th scope="col">
-                                    <a href="../ConnexionBD/deconnexion.php" class="btn btn-primary">
+                                    <a href="./function/OrdersFunction/ExportOrders.php "  class="btn btn-primary">
                                         Exporter Vers Excel
                                     </a>
 

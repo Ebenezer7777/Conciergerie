@@ -1,22 +1,32 @@
 <?php
-$query = "SELECT * FROM orders";
-$result = $conn->query($query);
+session_start();
+include '../../../bdConnection/dbconnexion.php';
 
-// Vérifier si la requête a réussi
+global $connect;
+$query = "SELECT * FROM commande join client 
+on commande.codeClient = client.codeClient 
+INNER JOIN livraison ON Commande.noCommande = livraison.noCommande";
+$result = $connect->query($query);
+
+
 if($result) {
-    // En-tête du fichier
+
     header("Content-Type: application/xls");
     header("Content-Disposition: attachment; filename=orders.xls");
 
+
     // Affichage des colonnes
-    echo "Order ID\tCustomer Name\tOrder Date\tTotal\n";
+    echo "Numero Commande\tNom Client\tQuantité\tTel\tDate Commande\tDate Livraison\tAdresse Livraison\n";
+
 
     // Boucle pour afficher les lignes
-    while($row = $result->fetch_assoc()) {
-        echo $row['order_id'] . "\t" . $row['customer_name'] . "\t" . $row['order_date'] . "\t" . $row['total'] . "\n";
+    while($row = $result->fetch()) {
+        echo $row['noCommande'] . "\t" . $row['nameClient'] . "\t" . $row['quantite'] . "\t" . $row['tel']
+         . $row['dateCommande'] . "\t"
+        .$row['dateLiv'] . "\t".$row['adresseLiv'] . "\n";
     }
 } else {
-    echo "Error: " . $conn->error;
+    echo "Error: " . $connect->error;
 }
 
 // Fermer la connexion à la base de données

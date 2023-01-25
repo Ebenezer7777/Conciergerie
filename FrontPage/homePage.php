@@ -249,17 +249,17 @@ $connect = mysqli_connect('localhost', 'root', '', 'conciergerie');
               Shopping With Us
             </h6>
             <p>
-              <a href="#!" class="text-reset">Angular</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">React</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Vue</a>
-            </p>
-            <p>
-              <a href="#!" class="text-reset">Laravel</a>
-            </p>
+                            <a href="#!" class="text-reset">xxxxxxx</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">xxxxxxx</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">xxxxxx</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">xxxxxxx</a>
+                        </p>
           </div>
           <!-- Grid column -->
 

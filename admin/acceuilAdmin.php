@@ -12,6 +12,7 @@ include '../bdConnection/dbconnexion.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Admin </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
@@ -29,6 +30,11 @@ include '../bdConnection/dbconnexion.php';
 
                 <div class="position-sticky">
                     <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="acceuilAdmin.php">
+                                <img src="../images/logo.png" alt="" srcset="">
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="acceuilAdmin.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
@@ -124,8 +130,7 @@ include '../bdConnection/dbconnexion.php';
                             <div class="card">
                                 <h5 class="card-header">Numbers Sales</h5>
                                 <div class="card-body row">
-                                    <img class="col" style="height: 80px;" 
-                                    src="https://png.pngitem.com/pimgs/s/1-19887_transparent-market-clipart-sales-and-marketing-icon-png.png" alt="">
+                                    <img class="col" style="height: 80px;" src="https://png.pngitem.com/pimgs/s/1-19887_transparent-market-clipart-sales-and-marketing-icon-png.png" alt="">
 
                                     <h5 class="card-title col">
                                         <?= include './function/acceuilAdminFunction/numberSale.php' ?>
@@ -140,10 +145,32 @@ include '../bdConnection/dbconnexion.php';
                 <h1 class="h2 mt">Sales Update</h1>
                 <br>
                 <div class="col-12 col-xl-8 mx-auto d-block">
-                    <div class="card bg-dark text-white ">
-                        <div class="card-body">
-                            <div id="traffic-chart"></div>
+                    <div class="card  text-white ">
+                        <div class="card-body ">
+                            <?php
+                            $query01 = $connect->query("SELECT SUM(quantite) AS amount01 FROM commande WHERE dateCommande LIKE '2022-01%';");
+                            foreach ($query01 as $data) {
+                                $amount01[] = $data['amount01'];
+                            }
+
+                            $query02 = $connect->query("SELECT SUM(quantite) AS amount02 FROM commande WHERE dateCommande LIKE '2022-02%';");
+                            foreach ($query02 as $data) {
+                                $amount02[] = $data['amount02'];
+                            }
+
+                            $query03 = $connect->query("SELECT SUM(quantite) AS amount03 FROM commande WHERE dateCommande LIKE '2022-03%';");
+                            foreach ($query03 as $data) {
+                                $amount03[] = $data['amount03'];
+                            }
+
+                            $query04 = $connect->query("SELECT SUM(quantite) AS amount04 FROM commande WHERE dateCommande LIKE '2022-04%';");
+                            foreach ($query04 as $data) {
+                                $amount04[] = $data['amount04'];
+                            }
+                            ?>
+                            <canvas id="myChart"></canvas>
                         </div>
+
                     </div>
                 </div>
         </div>
@@ -152,17 +179,34 @@ include '../bdConnection/dbconnexion.php';
     </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
     <script>
-        new Chartist.Line('#traffic-chart', {
-            labels: ['January', 'Februrary', 'March', 'April', 'May', 'June'],
-            series: [
-                [23000, 25000, 19000, 34000, 56000, 64000]
-            ]
-        }, {
-            low: 0,
-            showArea: true
-        });
+        const labels = [
+            'January',
+            'February',
+            'March',
+            'April',
+        ];
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Sales',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [<?php echo ($quantity = intval($amount01[0]) . ", 
+                        " . $quantity = intval($amount02[0]) . ", " . $quantity = intval($amount03[0]) . ", " . $quantity = intval($amount04[0])); ?>],
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
     </script>
 </body>
 

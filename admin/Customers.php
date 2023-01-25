@@ -82,6 +82,11 @@ function totalNumberPoint()
 
                 <div class="position-sticky">
                     <ul class="nav flex-column">
+                    <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="acceuilAdmin.php">
+                                <img src="../images/logo.png" alt="" srcset="">
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link " href="acceuilAdmin.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
@@ -212,9 +217,6 @@ function totalNumberPoint()
                                 <th scope="col">Membership</th>
                                 <th scope="col">Date Adhesion</th>
                                 <th scope="col">
-                                    <a href="../ConnexionBD/deconnexion.php" class="btn btn-primary">
-                                        Log Out
-                                    </a>
 
                                 </th>
                             </tr>

@@ -3,22 +3,8 @@ session_start();
 include '../bdConnection/dbconnexion.php';
  
 if(isset($_POST['Submit'])) {
-   $nom = htmlspecialchars($_POST['nom']);
-   $password = htmlspecialchars($_POST['password']);
-   if(!empty($nom) AND !empty($password)) {
-      $request = $connect->prepare("SELECT * FROM client WHERE nom_Client = ? AND password = ?");
-      $request->execute(array($nom, $password));
-      $userexist = $request->rowCount();
-      if($userexist == 1) {
-         $userinfo = $request->fetch();
-         $_SESSION['id_Client'] = $userinfo['id_Client'];
-         $_SESSION['nom_Client'] = $userinfo['nom_Client'];
-         $_SESSION['password'] = $userinfo['password'];
-         header("Location: compteClient.php?id_Client=".$_SESSION['id_Client']);
-      } else {
-         $erreur = "Mauvais nom ou mot de passe !";
-      }
-   } else {
+   $nom = htmlspecialchars($_POST['login']);
+
     if($nom == "ADMIN" AND $password== ""){
         header('Location: ../Admin/acceuilAdmin.php');
        }else{
@@ -26,7 +12,7 @@ if(isset($_POST['Submit'])) {
    }
 
    
-}
+
 
 ?>
 
@@ -56,9 +42,8 @@ if(isset($_POST['Submit'])) {
 
             <form method="POST" action="">
                 <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-                <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-               
-                <input type="submit" class="fadeIn fourth" value="Submit">
+                <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+                <input type="submit" class="fadeIn fourth" name="Submit" value="Submit">
             </form>
 
             <?php

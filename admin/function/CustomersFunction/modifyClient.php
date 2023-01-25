@@ -1,12 +1,13 @@
 <?php
-include '../../bdConnection/dbconnexion.php';
-
+session_start();
+include '../../../bdConnection/dbconnexion.php';
+global $connect;
 if(isset($_GET['codeClient']) AND !empty($_GET['codeClient'])){
     $getIdClient = $_GET['codeClient'];
     $selectClient = $connect->prepare('SELECT * FROM client WHERE codeClient= ?');
     $selectClient->execute(array($getIdClient));
-    if($selectClient->rowCount ()>0){
-        $ficheClient = $selectClient->fetch();
+    if($selectClient->rowCount () > 0){
+      while(  $ficheClient = $selectClient->fetch()){
         $nameClient = $ficheClient['nameClient'];
         $adresse = $ficheClient['adresse'];
         $email= $ficheClient['email'];
@@ -23,9 +24,9 @@ if(isset($_GET['codeClient']) AND !empty($_GET['codeClient'])){
         $compteIstagram = htmlspecialchars($_POST['compteiIstagram']);
         $updateClient = $connect->prepare('UPDATE client SET  nameClient=?,adresse=?,email=?,tel=?,compteFacebook=?,compteiIstagram=? WHERE codeClient =?');
         $updateClient->execute(array($nameClient,$adresse,$email,$tel,$compteFacebook,$compteIstagram ,$getIdClient));
-        header('Location: ../Customers.php');
+        header('Location: ../../Customers.php');
         }
-        
+      }  
     }else{
     
         echo "Nothing CLIENT";

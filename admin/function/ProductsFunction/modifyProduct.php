@@ -1,5 +1,5 @@
 <?php
-include '../../../bdConnection/dbconnexion.php"';
+include '../../../bdConnection/dbconnexion.php';
 
 if(isset($_GET['codeProduit']) AND !empty($_GET['codeProduit'])){
     $getIdProduit = $_GET['codeProduit'];
@@ -58,7 +58,7 @@ if(isset($_GET['codeProduit']) AND !empty($_GET['codeProduit'])){
             <br>
             <div class="col-lg-5">
             <br>
-            <form method="POST" action="" class="">
+            <form method="POST" action="" >
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">nom</label>
                     <input class="form-control" id="exampleFormControlInput1"  type="text" nom="nom" 

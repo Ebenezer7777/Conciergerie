@@ -1,3 +1,8 @@
+<?php
+session_start();
+include '../bdConnection/dbconnexion.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +20,7 @@
 <body>
 
     <div class="container-fluid ">
-        
+
         <div class="row">
             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block  sidebar collapse"
                 style="background-color:rgba(216, 188, 188, 1) ;">
@@ -23,7 +28,7 @@
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                            <a class="nav-link"  href="./acceuilAdmin.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-home">
@@ -34,7 +39,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link active" aria-current="page" href="./Orders.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-file">
@@ -45,7 +50,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="Products.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-shopping-cart">
@@ -57,7 +62,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="Customers.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-users">
@@ -86,7 +91,8 @@
                             <div class="card">
                                 <h5 class="card-header">Customers</h5>
                                 <div class="card-body">
-                                    <h5 class="card-title">345k</h5>
+
+                                    <h5 class="card-title">354 k</h5>
                                 </div>
                             </div>
                         </div>
@@ -119,33 +125,75 @@
                 </div>
                 <br>
                 <br>
-                <h1 class="h2 mt">Sales Update</h1>
+                <h1 class="h2 mt">Customers</h1>
                 <br>
-                <div class="col-12 col-xl-8 mx-auto d-block">
-                    <div class="card bg-dark text-white ">
-                        <div class="card-body">
-                            <div id="traffic-chart"></div>
-                        </div>
-                    </div>
-                </div>
-        </div>
+                <div class="col-12 col-xl-12 mx-auto d-block">
+                    <table class="table table-responsive-sm ">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">No Commande</th>
+                                <th scope="col">Nom Client</th>
+                                <th scope="col">Quantité </th>
+                                <th scope="col">Tel</th>
+                                <th scope="col">Date Commande</th>
+                                <th scope="col">Date Livraison</th>
+                                <th scope="col">Adresse Livraison</th>
+                                
+                                <th scope="col">
+                                    <a href="../ConnexionBD/deconnexion.php" class="btn btn-primary">
+                                        Log Out
+                                    </a>
 
-        </main>
-    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-success ">
+                            <?php
+$selectAllCommande = $connect->query('SELECT * FROM commande join client 
+on commande.codeClient = client.codeClient 
+INNER JOIN livraison ON Commande.noCommande = livraison.noCommande');
+    while($Commande = $selectAllCommande->fetch()){
+        ?>
+                            <tr>
+                                <td><?= $Commande['noCommande'] ?></td>
+                                <td><?= $Commande['nameClient'] ?></td>
+                                <td><?= $Commande['quantite'] ?></td>
+                                <td><?= $Commande['tel'] ?></td>
+                                <td><?= $Commande['dateCommande'] ?></td>
+                                <td><?= $Commande['dateLiv'] ?></td>
+                                <td><?= $Commande['adresseLiv'] ?></td>
+                                <td>
+                                    <a href="./function/deleteOrders.php?noCommande=<?=  $Commande['noCommande']; ?>"
+                                        class="btn btn-danger">
+     
+                                        delete
+                                    </a>
+
+                                    <a href="./function/modifyOrders.php?noCommande=<?=  $Commande['noCommande']; ?>"
+                                        class="btn btn-primary">
+            
+                                        Modify
+                                    </a>
+                                    <a href="./function/detailsOrders.php?noCommande=<?=  $Commande['noCommande']; ?>"
+                                        class="btn btn-warning">
+            
+                                        View
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php
+    }
+  
+    ?>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-    <script>
-        new Chartist.Line('#traffic-chart', {
-            labels: ['January', 'Februrary', 'March', 'April', 'May', 'June'],
-            series: [
-                [23000, 25000, 19000, 34000, 56000, 64000]
-            ]
-        }, {
-            low: 0,
-            showArea: true
-        });
-    </script>
+
 </body>
 
 </html>

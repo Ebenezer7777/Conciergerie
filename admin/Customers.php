@@ -1,7 +1,6 @@
 <?php
 session_start();
- 
-include '../ConnexionBD/dbconnexion.php';
+include '../bdConnection/dbconnexion.php';
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +28,7 @@ include '../ConnexionBD/dbconnexion.php';
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                            <a class="nav-link "  href="acceuilAdmin.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-home">
@@ -40,7 +39,7 @@ include '../ConnexionBD/dbconnexion.php';
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="Orders.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-file">
@@ -51,7 +50,7 @@ include '../ConnexionBD/dbconnexion.php';
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="Products.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-shopping-cart">
@@ -63,7 +62,7 @@ include '../ConnexionBD/dbconnexion.php';
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link active" aria-current="page" href="Customers.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-users">
@@ -92,7 +91,8 @@ include '../ConnexionBD/dbconnexion.php';
                             <div class="card">
                                 <h5 class="card-header">Customers</h5>
                                 <div class="card-body">
-                                    <h5 class="card-title">345k</h5>
+
+                                    <h5 class="card-title">354 k</h5>
                                 </div>
                             </div>
                         </div>
@@ -125,23 +125,22 @@ include '../ConnexionBD/dbconnexion.php';
                 </div>
                 <br>
                 <br>
-                <h1 class="h2 mt">GESTION CLIENT</h1>
+                <h1 class="h2 mt">Customers</h1>
                 <br>
-                <div class="col-12 col-xl-8 mx-auto d-block">
+                <div class="col-12 col-xl-12 mx-auto d-block">
                     <table class="table table-responsive-sm ">
                         <thead class="table-dark">
                             <tr>
                                 <th scope="col">Nom Clients</th>
-                                <th scope="col">Prenom Clients</th>
-                                <th scope="col">Mot de Passe</th>
-                                <th scope="col">Point de Fidelité</th>
-                                <th scope="col">Niveau MemberShip</th>
-                                <th scope="col">Date Expiration</th>
+                                <th scope="col">Adresse</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Tel</th>
+                                <th scope="col">Compte Facebook</th>
+                                <th scope="col">Compte Instagram</th>
+                                <th scope="col">Membership</th>
+                                <th scope="col">Date Adhesion</th>
                                 <th scope="col">
                                     <a href="../ConnexionBD/deconnexion.php" class="btn btn-primary">
-                                        <span class="material-symbols-outlined">
-                                            logout
-                                        </span>
                                         Log Out
                                     </a>
 
@@ -150,30 +149,29 @@ include '../ConnexionBD/dbconnexion.php';
                         </thead>
                         <tbody class="table-success ">
                             <?php
-$selectAllClients = $connect->query('SELECT * FROM client');
+$selectAllClients = $connect->query('SELECT * FROM client 
+JOIN cartefidelite ON client.id_carte = cartefidelite.id_carte');
     while($client = $selectAllClients->fetch()){
         ?>
                             <tr>
-                                <td><?= $client['nom_Client'] ?></td>
-                                <td><?= $client['prenom_Client'] ?></td>
-                                <td><?= $client['password'] ?></td>
-                                <td><?= $client['poitnFidelite'] ?></td>
-                                <td><?= $client['niveau_Membership'] ?></td>
-                                <td><?= $client['date_Expiration'] ?></td>
+                                <td><?= $client['nameClient'] ?></td>
+                                <td><?= $client['adresse'] ?></td>
+                                <td><?= $client['email'] ?></td>
+                                <td><?= $client['tel'] ?></td>
+                                <td><?= $client['compteFacebook'] ?></td>
+                                <td><?= $client['compteiIstagram'] ?></td>
+                                <td><?= $client['membership'] ?></td>
+                                <td><?= $client['dateAdhesion'] ?></td>
                                 <td>
-                                    <a href="deleteClient.php?id_Client=<?=  $client['id_Client']; ?>"
+                                    <a href="./function/CustomersFunction/deleteClient.php?codeClient=<?=  $client['codeClient']; ?>"
                                         class="btn btn-danger">
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
+     
                                         delete
                                     </a>
 
-                                    <a href="modifyClient.php?id_Client=<?=  $client['id_Client']; ?>"
+                                    <a href="./function/CustomersFunction/modifyClient.php?codeClient=<?=  $client['codeClient']; ?>"
                                         class="btn btn-primary">
-                                        <span class="material-symbols-outlined">
-                                            edit
-                                        </span>
+            
                                         Modify
                                     </a>
                                 </td>

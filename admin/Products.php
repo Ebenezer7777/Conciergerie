@@ -1,3 +1,20 @@
+<?php
+session_start();
+include '../bdConnection/dbconnexion.php';
+function totalNumberCustomers(){
+    global $connect;
+    $sql = "SELECT COUNT(*) as total FROM produit";
+    $result = $connect->query($sql);
+    if ($result->rowCount () > 0) {
+        while($row = $result->fetch()) {
+            echo "<p>" . $row["total"] . " k</p>";
+        }
+    } else {
+        echo "0 results";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +32,7 @@
 <body>
 
     <div class="container-fluid ">
-        
+
         <div class="row">
             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block  sidebar collapse"
                 style="background-color:rgba(216, 188, 188, 1) ;">
@@ -23,7 +40,7 @@
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                            <a class="nav-link"  href="./acceuilAdmin.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-home">
@@ -34,7 +51,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link"  href="./Orders.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-file">
@@ -45,7 +62,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link active" aria-current="page" href="Products.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-shopping-cart">
@@ -57,7 +74,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="Customers.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-users">
@@ -86,7 +103,11 @@
                             <div class="card">
                                 <h5 class="card-header">Customers</h5>
                                 <div class="card-body">
-                                    <h5 class="card-title">345k</h5>
+
+                                    <h5 class="card-title"> <?= 
+                                    totalNumberCustomers();
+                                    
+                                    ?></h5>
                                 </div>
                             </div>
                         </div>
@@ -119,33 +140,66 @@
                 </div>
                 <br>
                 <br>
-                <h1 class="h2 mt">Sales Update</h1>
+                <h1 class="h2 mt">Customers</h1>
                 <br>
                 <div class="col-12 col-xl-8 mx-auto d-block">
-                    <div class="card bg-dark text-white ">
-                        <div class="card-body">
-                            <div id="traffic-chart"></div>
-                        </div>
-                    </div>
-                </div>
-        </div>
+                    <table class="table table-responsive-sm ">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Nom Produit</th>
+                                <th scope="col">Type Produit</th>
+                                <th scope="col">Prix Unitaire</th>
+                                <th scope="col">Point Produit</th>
+                                <th scope="col">
+                                    <a href="../ConnexionBD/deconnexion.php" class="btn btn-primary">
+                                        Log Out
+                                    </a>
 
-        </main>
-    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-success ">
+                            <?php
+$selectAllProduit = $connect->query('SELECT * FROM produit');
+    while($produit = $selectAllProduit->fetch()){
+        ?>
+                            <tr>
+                                <td><?= $produit['nomProduit'] ?></td>
+                                <td><?= $produit['typeProduit'] ?></td>
+                                <td><?= $produit['prixUnitaire'] ?></td>
+                                <td><?= $produit['pointProduit'] ?></td>
+                                <td>
+                                    <a href="./function/ProductsFunction/deleteClient.php?codeProduit=<?=  $produit['codeProduit']; ?>"
+                                        class="btn btn-danger">
+     
+                                        delete
+                                    </a>
+
+                                    <a href="./function/ProductsFunction/modifyClient.php?codeProduit=<?=  $produit['codeProduit']; ?>"
+                                        class="btn btn-primary">
+            
+                                        Modify
+                                    </a>
+                                    <a href="./function/ProductsFunction/addProduct.php?codeProduit=<?=  $produit['codeProduit']; ?>"
+                                        class="btn btn-warning">
+            
+                                        Add
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php
+    }
+  
+    ?>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-    <script>
-        new Chartist.Line('#traffic-chart', {
-            labels: ['January', 'Februrary', 'March', 'April', 'May', 'June'],
-            series: [
-                [23000, 25000, 19000, 34000, 56000, 64000]
-            ]
-        }, {
-            low: 0,
-            showArea: true
-        });
-    </script>
+
 </body>
 
 </html>

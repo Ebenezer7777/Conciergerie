@@ -1,3 +1,11 @@
+<?php
+session_start();
+include '../bdConnection/dbconnexion.php';
+    
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +16,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
         integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="./style.css">
 
 </head>
 
@@ -23,7 +32,7 @@
                 <div class="position-sticky">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">
+                            <a class="nav-link active" aria-current="page" href="acceuilAdmin.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-home">
@@ -34,7 +43,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="Orders.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-file">
@@ -45,7 +54,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="Products.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-shopping-cart">
@@ -57,7 +66,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="Customers.php">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-users">
@@ -84,34 +93,49 @@
                     <div class="row my-4 z-index-1 m-0 mt-5">
                         <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0 ">
                             <div class="card">
-                                <h5 class="card-header">Customers</h5>
-                                <div class="card-body">
-                                    <h5 class="card-title">345k</h5>
+                                <h5 class="card-header">Number Customers</h5>
+                                <div class="card-body ">
+                                <div class="row">
+                                    <div class="col">
+                                    <img style="height: 80px;" src="https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png" alt="">
+                                    </div>
+                                    <div class="col">
+                                    <h5 class="card-title row">
+                                        <?= include './function/acceuilAdminFunction/numberCustomers.php' ?>
+                                    </h5>
+                                </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
                             <div class="card">
-                                <h5 class="card-header">Revenue</h5>
+                                <h5 class="card-header">Numbers Orders</h5>
                                 <div class="card-body">
-                                    <h5 class="card-title">$2.4k</h5>
+                                    <h5 class="card-title">
+                                        <?= include './function/acceuilAdminFunction/numberOrders.php' ?>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
                             <div class="card">
-                                <h5 class="card-header">Purchases</h5>
+                                <h5 class="card-header">Numbers Products</h5>
                                 <div class="card-body">
-                                    <h5 class="card-title">43</h5>
+                                    <h5 class="card-title">
+                                        <?= include './function/acceuilAdminFunction/numberProducts.php' ?>
+                                    </h5>
 
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
                             <div class="card">
-                                <h5 class="card-header">Traffic</h5>
+                                <h5 class="card-header">Numbers Sales</h5>
                                 <div class="card-body">
-                                    <h5 class="card-title">64k</h5>
+                                    <h5 class="card-title">
+                                        <?= include './function/acceuilAdminFunction/numberSale.php' ?>
+                                    </h5>
                                 </div>
                             </div>
                         </div>
